@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   route: 'http://fabricaescuelamodgestionnotas-production.up.railway.app/api/V1/',
   //cookieToken: 'token'
+  
 };
 
 /*

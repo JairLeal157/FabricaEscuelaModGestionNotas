@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { LoginService } from 'src/app/core/services/login.service';
 import { ProfessorService } from 'src/app/modules/professor/services/professor.service';
 
 @Component({
@@ -10,12 +11,16 @@ import { ProfessorService } from 'src/app/modules/professor/services/professor.s
 })
 export class HeaderComponent implements OnInit {
   public professor: any = {};
+  storedValue: any;
   id: any = 0;
 
   constructor(
     private professorSvc: ProfessorService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private loginSvc: LoginService
   ) {
+    this.storedValue = this.loginSvc.getValue();
+
     const PROFESSOR = this.activateRoute.params.pipe(
       switchMap(
         params => {

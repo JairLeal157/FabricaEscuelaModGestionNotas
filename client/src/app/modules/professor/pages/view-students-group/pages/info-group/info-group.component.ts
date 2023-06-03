@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { LoginService } from 'src/app/core/services/login.service';
 import { IProfessor } from 'src/app/modules/professor/interfaces/professor-interface';
 import { GroupsService } from 'src/app/modules/professor/services/groups.service';
 import { ProfessorService } from 'src/app/modules/professor/services/professor.service';
@@ -10,20 +11,24 @@ import { ProfessorService } from 'src/app/modules/professor/services/professor.s
   templateUrl: './info-group.component.html',
   styleUrls: ['./info-group.component.scss']
 })
-export class InfoGroupComponent {
+export class InfoGroupComponent{
 
   public id = 0;
   public courses: any[] = [];
   public group: any= {};
   public professor: any = {};
 
+  storedValue: any = '';
+
   constructor(
     private activateRoute: ActivatedRoute, 
     
     private groupsSvc: GroupsService,
-    private professorSvc: ProfessorService
+    private professorSvc: ProfessorService,
+    private loginSvc: LoginService
   ) {
 
+    this.storedValue = this.loginSvc.getValue();
     const group = this.activateRoute.params.pipe(
       switchMap(
         params => {
@@ -39,7 +44,7 @@ export class InfoGroupComponent {
       }
     );
 
-    this.professorSvc.getProfessor(100004).subscribe((resp) => {
+    this.professorSvc.getProfessor(this.storedValue).subscribe((resp) => {
       console.log(resp);
       this.professor = resp;
     });

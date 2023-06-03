@@ -1,1 +1,70 @@
-<input type="text">
+<div class="d-flex justify-content-center align-items-center p-3 mt-2">
+  <!-- <img src="../../../../assets/logosimbolo-vertical.png" alt="Logo vertical de la universidad de antioquia" class="mt-4" style="width:40%"> -->
+  <div class="card p-1 shadow col-12 col-sm-12 col-md-15 col-lg-5">
+
+    <div class="card-body">
+      <form
+        need-validation
+        novalidate
+        [formGroup]="form"
+      >
+        <!-- <div [ngbCollapse]="!isCollapsed" id="Login"> -->
+        <div>
+          <div class="form px-4 pt-1 m-2">
+            <!-- email -->
+            <div class="formfloatig mt-3">
+              <input
+                id="username"
+                type="text"
+                class="form-control"
+                placeholder="Cedula"
+                formControlName="username"
+                autofocus
+                formControlName="email"
+              />
+            </div>
+
+            <!-- errors email -->
+            <!-- <div *ngIf="submitted && f['username'].errors" class="invalid">
+              <div *ngIf="submitted && f['username'].errors?.['required']">
+                El correo es requerido
+              </div>
+            </div> -->
+
+            <!-- password -->
+            <div class="formfloatig mt-3">
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                formControlName="password"
+              />
+            </div>
+
+            <!-- forgot password -->
+            <div class="d-flex justify-content-start">
+              <a
+                [routerLink]="['../forgot-password']"
+                class="btn btn-link link-success"
+              >
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+            <div class="d-grid gap-2 col-12 mt-4 pb-4">
+              <button
+                id="btn-sub"
+                type="submit"
+                class="btn btn-submit btn-submit p-1"
+                (click)="onSubmit()"
+              >
+                Iniciar sesión
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
